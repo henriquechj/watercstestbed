@@ -1,0 +1,104 @@
+package com.utfpr.scadasim.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import com.serotonin.modbus4j.ModbusFactory;
+import com.serotonin.modbus4j.ModbusMaster;
+import com.serotonin.modbus4j.exception.ErrorResponseException;
+import com.serotonin.modbus4j.exception.ModbusInitException;
+import com.serotonin.modbus4j.exception.ModbusTransportException;
+import com.serotonin.modbus4j.ip.IpParameters;
+import com.serotonin.modbus4j.msg.ReadCoilsRequest;
+import com.serotonin.modbus4j.msg.ReadCoilsResponse;
+import com.serotonin.modbus4j.msg.ReadHoldingRegistersRequest;
+import com.serotonin.modbus4j.msg.ReadHoldingRegistersResponse;
+import com.serotonin.modbus4j.msg.WriteCoilRequest;
+import com.serotonin.modbus4j.msg.WriteCoilResponse;
+import com.serotonin.modbus4j.msg.WriteRegistersRequest;
+import com.serotonin.modbus4j.msg.WriteRegistersResponse;
+
+@Service
+public class ModbusService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ModbusService.class);
+    private final ModbusFactory modbusFactory;
+    private static final int SLAVE_ID = 1;
+
+    public ModbusService() {
+        this.modbusFactory = new ModbusFactory();
+    }
+
+    private ModbusMaster createTcpMaster(String ip, int port) {
+        IpParameters params = new IpParameters();
+        params.setHost(ip);
+        params.setPort(port);
+        return modbusFactory.createTcpMaster(params, true);
+    }
+
+    public void writeCoil(String ip, int port, int slaveId, int offset, boolean value) throws ModbusTransportException, ErrorResponseException, ModbusInitException {
+        ModbusMaster master = createTcpMaster(ip, port);
+        try {
+            master.init();
+            WriteCoilRequest request = new WriteCoilRequest(slaveId, offset, value);
+            WriteCoilResponse response = (WriteCoilResponse) master.send(request);
+            if (response.isException()) {
+                throw new ErrorResponseException(request, response);
+            }
+        } finally {
+            master.destroy();
+        }
+    }
+
+    public boolean[] readCoils(String ip, int port, int slaveId, int offset, int numberOfBits) throws ModbusTransportException, ErrorResponseException, ModbusInitException {
+        ModbusMaster master = createTcpMaster(ip, port);
+        try {
+            master.init();
+            ReadCoilsRequest request = new ReadCoilsRequest(slaveId, offset, numberOfBits);
+            ReadCoilsResponse response = (ReadCoilsResponse) master.send(request);
+            if (response.isException()) {
+                throw new ErrorResponseException(request, response);
+            }
+            return response.getBooleanData();
+        } finally {
+            master.destroy();
+        }
+    }
+
+    public short[] readHoldingRegisters(String ip, int port, int startAddress, int quantity) throws ErrorResponseException {
+        ModbusMaster master = createTcpMaster(ip, port);
+        try {
+            master.init();
+            ReadHoldingRegistersRequest request = new ReadHoldingRegistersRequest(SLAVE_ID, startAddress, quantity);
+            ReadHoldingRegistersResponse response = (ReadHoldingRegistersResponse) master.send(request);
+
+            if (response.isException()) {
+                logger.error("Erro na resposta Modbus: {}", response.getExceptionMessage());
+                throw new ErrorResponseException(request, response);
+                //return null;
+            }
+            return response.getShortData();
+        } catch (ModbusTransportException | ModbusInitException e) {
+            logger.error("Erro ao ler registros de retenção: ", e);
+            return null;
+        } finally {
+            master.destroy();
+        }
+    }
+
+    public void writeRegisters(String ip, int port, int slaveId, int offset, short[] values) throws ModbusTransportException, ErrorResponseException, ModbusInitException {
+        ModbusMaster master = createTcpMaster(ip, port);
+        try {
+            master.init();
+            WriteRegistersRequest request = new WriteRegistersRequest(slaveId, offset, values);
+            WriteRegistersResponse response = (WriteRegistersResponse) master.send(request);
+            if (response.isException()) {
+                throw new ErrorResponseException(request, response);
+            }
+        } finally {
+            master.destroy();
+        }
+    }
+}
+

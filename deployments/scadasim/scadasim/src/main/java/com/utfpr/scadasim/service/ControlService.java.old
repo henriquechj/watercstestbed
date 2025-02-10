@@ -1,0 +1,52 @@
+package com.utfpr.scadasim.service;
+
+import com.utfpr.scadasim.model.Sensor;
+import com.serotonin.modbus4j.exception.ErrorResponseException;
+import com.serotonin.modbus4j.exception.ModbusInitException;
+import com.serotonin.modbus4j.exception.ModbusTransportException;
+import com.utfpr.scadasim.model.Atuador;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ControlService {
+    private final ModbusService modbusService;
+    private final Sensor nivelBarragem;
+    private final Sensor nivelTanque;
+    private final Sensor pressaoRede;
+    private final Atuador bombaCaptacao;
+    private final Atuador bombaDistribuicao;
+
+    public ControlService(ModbusService modbusService) {
+        this.modbusService = modbusService;
+        this.nivelBarragem = new Sensor("Nivel Barragem");
+        this.nivelTanque = new Sensor("Nivel Tanque");
+        this.pressaoRede = new Sensor("Pressao Rede");
+        this.bombaCaptacao = new Atuador("Bomba Captacao");
+        this.bombaDistribuicao = new Atuador("Bomba Distribuicao");
+    }
+
+    public void checkAndUpdate() throws ModbusTransportException, ErrorResponseException, ModbusInitException {
+        // Simulação da leitura dos sensores e controle dos atuadores
+
+        // CLP1: Verificar o nível da barragem de captação
+        nivelBarragem.setValue(modbusService.readCoils("172.20.0.3", 502, 1, 0, 1)[0] ? 100 : 0);
+
+        // CLP2: Verificar o nível do tanque de tratamento
+        nivelTanque.setValue(modbusService.readCoils("172.20.0.4", 502, 1, 0, 1)[0] ? 100 : 0);
+        if (nivelTanque.getValue() < 50) {
+            bombaCaptacao.setStatus(true);
+        } else if (nivelTanque.getValue() >= 100) {
+            bombaCaptacao.setStatus(false);
+        }
+        modbusService.writeCoil("172.20.0.4", 502, 1, 1, bombaCaptacao.isStatus());
+
+        // CLP3: Verificar a pressão da rede
+        pressaoRede.setValue(modbusService.readCoils("172.20.0.5", 502, 1, 0, 1)[0] ? 80 : 0);
+        if (pressaoRede.getValue() < 40) {
+            bombaDistribuicao.setStatus(true);
+        } else if (pressaoRede.getValue() > 80) {
+            bombaDistribuicao.setStatus(false);
+        }
+        modbusService.writeCoil("172.20.0.5", 502, 1, 1, bombaDistribuicao.isStatus());
+    }
+}

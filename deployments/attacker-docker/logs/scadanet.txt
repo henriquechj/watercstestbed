@@ -1,0 +1,19 @@
+# Nmap 7.92 scan initiated Sat Sep 14 09:25:30 2024 as: nmap -sn -oN logs/scadanet.txt 172.20.0.0/16
+Nmap scan report for 172.20.0.2
+Host is up (0.000018s latency).
+MAC Address: 02:42:AC:14:00:02 (Unknown)
+Nmap scan report for 172.20.0.3
+Host is up (0.000016s latency).
+MAC Address: 02:42:AC:14:00:03 (Unknown)
+Nmap scan report for 172.20.0.4
+Host is up (0.000016s latency).
+MAC Address: 02:42:AC:14:00:04 (Unknown)
+Nmap scan report for 172.20.0.5
+Host is up (0.000017s latency).
+MAC Address: 02:42:AC:14:00:05 (Unknown)
+Nmap scan report for 172.20.0.10
+Host is up (0.000072s latency).
+MAC Address: 02:42:AC:14:00:0A (Unknown)
+Nmap scan report for lenovo-fedora (172.20.0.1)
+Host is up.
+# Nmap done at Sat Sep 14 10:07:10 2024 -- 65536 IP addresses (6 hosts up) scanned in 2499.51 seconds

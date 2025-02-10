@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  scada:
+    build: .
+    container_name: scada
+    ports:
+      - "8080:8080"
+    networks:
+      scada_network:
+        ipv4_address: 172.20.0.2
+
+  clp1:
+    image: alpine
+    container_name: clp1
+    networks:
+      scada_network:
+        ipv4_address: 172.20.0.3
+    volumes:
+      - ./clp1.sh:/clp1.sh
+    command: ["sh", "/clp1.sh"]
+
+  clp2:
+    image: alpine
+    container_name: clp2
+    networks:
+      scada_network:
+        ipv4_address: 172.20.0.4
+    volumes:
+      - ./clp2.sh:/clp2.sh
+    command: ["sh", "/clp2.sh"]
+
+  clp3:
+    image: alpine
+    container_name: clp3
+    networks:
+      scada_network:
+        ipv4_address: 172.20.0.5
+    volumes:
+      - ./clp3.sh:/clp3.sh
+    command: ["sh", "/clp3.sh"]
+
+networks:
+  scada_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

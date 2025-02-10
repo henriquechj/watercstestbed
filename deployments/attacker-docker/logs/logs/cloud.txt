@@ -1,0 +1,167 @@
+# Nmap 7.92 scan initiated Mon Sep 16 10:41:52 2024 as: nmap -sV -oN logs/cloud.txt 172.19.0.0/24
+Nmap scan report for 172.19.0.2
+Host is up (0.000013s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE    VERSION
+8080/tcp open  http-proxy
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8080-TCP:V=7.92%I=7%D=9/16%Time=66E835A9%P=x86_64-redhat-linux-gnu%
+SF:r(GetRequest,11B,"HTTP/1\.1\x20404\x20\r\nVary:\x20Origin\r\nVary:\x20A
+SF:ccess-Control-Request-Method\r\nVary:\x20Access-Control-Request-Headers
+SF:\r\nContent-Type:\x20application/json\r\nDate:\x20Mon,\x2016\x20Sep\x20
+SF:2024\x2013:42:01\x20GMT\r\nConnection:\x20close\r\n\r\n{\"timestamp\":\
+SF:"2024-09-16T13:42:01\.628\+00:00\",\"status\":404,\"error\":\"Not\x20Fo
+SF:und\",\"path\":\"/\"}")%r(HTTPOptions,11B,"HTTP/1\.1\x20404\x20\r\nVary
+SF::\x20Origin\r\nVary:\x20Access-Control-Request-Method\r\nVary:\x20Acces
+SF:s-Control-Request-Headers\r\nContent-Type:\x20application/json\r\nDate:
+SF:\x20Mon,\x2016\x20Sep\x202024\x2013:42:01\x20GMT\r\nConnection:\x20clos
+SF:e\r\n\r\n{\"timestamp\":\"2024-09-16T13:42:01\.656\+00:00\",\"status\":
+SF:404,\"error\":\"Not\x20Found\",\"path\":\"/\"}")%r(RTSPRequest,24E,"HTT
+SF:P/1\.1\x20400\x20\r\nContent-Type:\x20text/html;charset=utf-8\r\nConten
+SF:t-Language:\x20en\r\nContent-Length:\x20435\r\nDate:\x20Mon,\x2016\x20S
+SF:ep\x202024\x2013:42:01\x20GMT\r\nConnection:\x20close\r\n\r\n<!doctype\
+SF:x20html><html\x20lang=\"en\"><head><title>HTTP\x20Status\x20400\x20\xe2
+SF:\x80\x93\x20Bad\x20Request</title><style\x20type=\"text/css\">body\x20{
+SF:font-family:Tahoma,Arial,sans-serif;}\x20h1,\x20h2,\x20h3,\x20b\x20{col
+SF:or:white;background-color:#525D76;}\x20h1\x20{font-size:22px;}\x20h2\x2
+SF:0{font-size:16px;}\x20h3\x20{font-size:14px;}\x20p\x20{font-size:12px;}
+SF:\x20a\x20{color:black;}\x20\.line\x20{height:1px;background-color:#525D
+SF:76;border:none;}</style></head><body><h1>HTTP\x20Status\x20400\x20\xe2\
+SF:x80\x93\x20Bad\x20Request</h1></body></html>")%r(FourOhFourRequest,16A,
+SF:"HTTP/1\.1\x20404\x20\r\nVary:\x20Origin\r\nVary:\x20Access-Control-Req
+SF:uest-Method\r\nVary:\x20Access-Control-Request-Headers\r\nContent-Dispo
+SF:sition:\x20inline;filename=f\.txt\r\nContent-Type:\x20application/json\
+SF:r\nDate:\x20Mon,\x2016\x20Sep\x202024\x2013:42:01\x20GMT\r\nConnection:
+SF:\x20close\r\n\r\n{\"timestamp\":\"2024-09-16T13:42:01\.750\+00:00\",\"s
+SF:tatus\":404,\"error\":\"Not\x20Found\",\"path\":\"/nice%20ports%2C/Tri%
+SF:6Eity\.txt%2ebak\"}")%r(Socks5,24E,"HTTP/1\.1\x20400\x20\r\nContent-Typ
+SF:e:\x20text/html;charset=utf-8\r\nContent-Language:\x20en\r\nContent-Len
+SF:gth:\x20435\r\nDate:\x20Mon,\x2016\x20Sep\x202024\x2013:42:01\x20GMT\r\
+SF:nConnection:\x20close\r\n\r\n<!doctype\x20html><html\x20lang=\"en\"><he
+SF:ad><title>HTTP\x20Status\x20400\x20\xe2\x80\x93\x20Bad\x20Request</titl
+SF:e><style\x20type=\"text/css\">body\x20{font-family:Tahoma,Arial,sans-se
+SF:rif;}\x20h1,\x20h2,\x20h3,\x20b\x20{color:white;background-color:#525D7
+SF:6;}\x20h1\x20{font-size:22px;}\x20h2\x20{font-size:16px;}\x20h3\x20{fon
+SF:t-size:14px;}\x20p\x20{font-size:12px;}\x20a\x20{color:black;}\x20\.lin
+SF:e\x20{height:1px;background-color:#525D76;border:none;}</style></head><
+SF:body><h1>HTTP\x20Status\x20400\x20\xe2\x80\x93\x20Bad\x20Request</h1></
+SF:body></html>");
+MAC Address: 02:42:AC:13:00:02 (Unknown)
+
+Nmap scan report for 172.19.0.3
+Host is up (0.000012s latency).
+All 1000 scanned ports on 172.19.0.3 are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+MAC Address: 02:42:AC:13:00:03 (Unknown)
+
+Nmap scan report for 172.19.0.10
+Host is up (0.000012s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE     VERSION
+9001/tcp open  tor-orport?
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port9001-TCP:V=7.92%I=7%D=9/16%Time=66E835A9%P=x86_64-redhat-linux-gnu%
+SF:r(SSLSessionReq,F5,"HTTP/1\.0\x20403\x20Forbidden\r\ncontent-type:\x20t
+SF:ext/html\r\ncontent-length:\x20173\r\n\r\n<html><head><meta\x20charset=
+SF:utf-8\x20http-equiv=\"Content-Language\"\x20content=\"en\"/><link\x20re
+SF:l=\"stylesheet\"\x20type=\"text/css\"\x20href=\"/error\.css\"/></head><
+SF:body><h1>403</h1></body></html>")%r(TLSSessionReq,F5,"HTTP/1\.0\x20403\
+SF:x20Forbidden\r\ncontent-type:\x20text/html\r\ncontent-length:\x20173\r\
+SF:n\r\n<html><head><meta\x20charset=utf-8\x20http-equiv=\"Content-Languag
+SF:e\"\x20content=\"en\"/><link\x20rel=\"stylesheet\"\x20type=\"text/css\"
+SF:\x20href=\"/error\.css\"/></head><body><h1>403</h1></body></html>")%r(S
+SF:SLv23SessionReq,F5,"HTTP/1\.0\x20403\x20Forbidden\r\ncontent-type:\x20t
+SF:ext/html\r\ncontent-length:\x20173\r\n\r\n<html><head><meta\x20charset=
+SF:utf-8\x20http-equiv=\"Content-Language\"\x20content=\"en\"/><link\x20re
+SF:l=\"stylesheet\"\x20type=\"text/css\"\x20href=\"/error\.css\"/></head><
+SF:body><h1>403</h1></body></html>")%r(JavaRMI,F5,"HTTP/1\.0\x20403\x20For
+SF:bidden\r\ncontent-type:\x20text/html\r\ncontent-length:\x20173\r\n\r\n<
+SF:html><head><meta\x20charset=utf-8\x20http-equiv=\"Content-Language\"\x2
+SF:0content=\"en\"/><link\x20rel=\"stylesheet\"\x20type=\"text/css\"\x20hr
+SF:ef=\"/error\.css\"/></head><body><h1>403</h1></body></html>")%r(Radmin,
+SF:F5,"HTTP/1\.0\x20403\x20Forbidden\r\ncontent-type:\x20text/html\r\ncont
+SF:ent-length:\x20173\r\n\r\n<html><head><meta\x20charset=utf-8\x20http-eq
+SF:uiv=\"Content-Language\"\x20content=\"en\"/><link\x20rel=\"stylesheet\"
+SF:\x20type=\"text/css\"\x20href=\"/error\.css\"/></head><body><h1>403</h1
+SF:></body></html>")%r(mongodb,F5,"HTTP/1\.0\x20403\x20Forbidden\r\nconten
+SF:t-type:\x20text/html\r\ncontent-length:\x20173\r\n\r\n<html><head><meta
+SF:\x20charset=utf-8\x20http-equiv=\"Content-Language\"\x20content=\"en\"/
+SF:><link\x20rel=\"stylesheet\"\x20type=\"text/css\"\x20href=\"/error\.css
+SF:\"/></head><body><h1>403</h1></body></html>")%r(tarantool,F5,"HTTP/1\.0
+SF:\x20403\x20Forbidden\r\ncontent-type:\x20text/html\r\ncontent-length:\x
+SF:20173\r\n\r\n<html><head><meta\x20charset=utf-8\x20http-equiv=\"Content
+SF:-Language\"\x20content=\"en\"/><link\x20rel=\"stylesheet\"\x20type=\"te
+SF:xt/css\"\x20href=\"/error\.css\"/></head><body><h1>403</h1></body></htm
+SF:l>");
+MAC Address: 02:42:AC:13:00:0A (Unknown)
+
+Nmap scan report for 172.19.0.11
+Host is up (0.000012s latency).
+All 1000 scanned ports on 172.19.0.11 are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+MAC Address: 02:42:AC:13:00:0B (Unknown)
+
+Nmap scan report for 172.19.0.12
+Host is up (0.000012s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE    VERSION
+8080/tcp open  http-proxy
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8080-TCP:V=7.92%I=7%D=9/16%Time=66E835A9%P=x86_64-redhat-linux-gnu%
+SF:r(GetRequest,11B,"HTTP/1\.1\x20404\x20\r\nVary:\x20Origin\r\nVary:\x20A
+SF:ccess-Control-Request-Method\r\nVary:\x20Access-Control-Request-Headers
+SF:\r\nContent-Type:\x20application/json\r\nDate:\x20Mon,\x2016\x20Sep\x20
+SF:2024\x2013:42:01\x20GMT\r\nConnection:\x20close\r\n\r\n{\"timestamp\":\
+SF:"2024-09-16T13:42:01\.628\+00:00\",\"status\":404,\"error\":\"Not\x20Fo
+SF:und\",\"path\":\"/\"}")%r(HTTPOptions,11B,"HTTP/1\.1\x20404\x20\r\nVary
+SF::\x20Origin\r\nVary:\x20Access-Control-Request-Method\r\nVary:\x20Acces
+SF:s-Control-Request-Headers\r\nContent-Type:\x20application/json\r\nDate:
+SF:\x20Mon,\x2016\x20Sep\x202024\x2013:42:01\x20GMT\r\nConnection:\x20clos
+SF:e\r\n\r\n{\"timestamp\":\"2024-09-16T13:42:01\.656\+00:00\",\"status\":
+SF:404,\"error\":\"Not\x20Found\",\"path\":\"/\"}")%r(RTSPRequest,24E,"HTT
+SF:P/1\.1\x20400\x20\r\nContent-Type:\x20text/html;charset=utf-8\r\nConten
+SF:t-Language:\x20en\r\nContent-Length:\x20435\r\nDate:\x20Mon,\x2016\x20S
+SF:ep\x202024\x2013:42:01\x20GMT\r\nConnection:\x20close\r\n\r\n<!doctype\
+SF:x20html><html\x20lang=\"en\"><head><title>HTTP\x20Status\x20400\x20\xe2
+SF:\x80\x93\x20Bad\x20Request</title><style\x20type=\"text/css\">body\x20{
+SF:font-family:Tahoma,Arial,sans-serif;}\x20h1,\x20h2,\x20h3,\x20b\x20{col
+SF:or:white;background-color:#525D76;}\x20h1\x20{font-size:22px;}\x20h2\x2
+SF:0{font-size:16px;}\x20h3\x20{font-size:14px;}\x20p\x20{font-size:12px;}
+SF:\x20a\x20{color:black;}\x20\.line\x20{height:1px;background-color:#525D
+SF:76;border:none;}</style></head><body><h1>HTTP\x20Status\x20400\x20\xe2\
+SF:x80\x93\x20Bad\x20Request</h1></body></html>")%r(FourOhFourRequest,16A,
+SF:"HTTP/1\.1\x20404\x20\r\nVary:\x20Origin\r\nVary:\x20Access-Control-Req
+SF:uest-Method\r\nVary:\x20Access-Control-Request-Headers\r\nContent-Dispo
+SF:sition:\x20inline;filename=f\.txt\r\nContent-Type:\x20application/json\
+SF:r\nDate:\x20Mon,\x2016\x20Sep\x202024\x2013:42:01\x20GMT\r\nConnection:
+SF:\x20close\r\n\r\n{\"timestamp\":\"2024-09-16T13:42:01\.735\+00:00\",\"s
+SF:tatus\":404,\"error\":\"Not\x20Found\",\"path\":\"/nice%20ports%2C/Tri%
+SF:6Eity\.txt%2ebak\"}")%r(Socks5,24E,"HTTP/1\.1\x20400\x20\r\nContent-Typ
+SF:e:\x20text/html;charset=utf-8\r\nContent-Language:\x20en\r\nContent-Len
+SF:gth:\x20435\r\nDate:\x20Mon,\x2016\x20Sep\x202024\x2013:42:01\x20GMT\r\
+SF:nConnection:\x20close\r\n\r\n<!doctype\x20html><html\x20lang=\"en\"><he
+SF:ad><title>HTTP\x20Status\x20400\x20\xe2\x80\x93\x20Bad\x20Request</titl
+SF:e><style\x20type=\"text/css\">body\x20{font-family:Tahoma,Arial,sans-se
+SF:rif;}\x20h1,\x20h2,\x20h3,\x20b\x20{color:white;background-color:#525D7
+SF:6;}\x20h1\x20{font-size:22px;}\x20h2\x20{font-size:16px;}\x20h3\x20{fon
+SF:t-size:14px;}\x20p\x20{font-size:12px;}\x20a\x20{color:black;}\x20\.lin
+SF:e\x20{height:1px;background-color:#525D76;border:none;}</style></head><
+SF:body><h1>HTTP\x20Status\x20400\x20\xe2\x80\x93\x20Bad\x20Request</h1></
+SF:body></html>");
+MAC Address: 02:42:AC:13:00:0C (Unknown)
+
+Nmap scan report for lenovo-fedora (172.19.0.1)
+Host is up (0.000059s latency).
+Not shown: 992 closed tcp ports (reset)
+PORT      STATE    SERVICE         VERSION
+902/tcp   open     ssl/vmware-auth VMware Authentication Daemon 1.10 (Uses VNC, SOAP)
+8080/tcp  filtered http-proxy
+8081/tcp  filtered blackice-icecap
+8082/tcp  filtered blackice-alerts
+8083/tcp  filtered us-srv
+9001/tcp  filtered tor-orport
+9200/tcp  filtered wap-wsp
+50000/tcp filtered ibm-db2
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Sep 16 10:42:09 2024 -- 256 IP addresses (6 hosts up) scanned in 16.75 seconds

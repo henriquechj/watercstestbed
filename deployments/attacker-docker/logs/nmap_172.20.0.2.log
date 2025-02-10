@@ -1,0 +1,48 @@
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-14 23:33 UTC
+Nmap scan report for scadapy.scadanet (172.20.0.2)
+Host is up (0.000021s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE    VERSION
+8080/tcp open  http-proxy Werkzeug/3.0.3 Python/3.8.19
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8080-TCP:V=7.94SVN%I=7%D=7/14%Time=66946046%P=x86_64-pc-linux-gnu%r
+SF:(GetRequest,184,"HTTP/1\.1\x20404\x20NOT\x20FOUND\r\nServer:\x20Werkzeu
+SF:g/3\.0\.3\x20Python/3\.8\.19\r\nDate:\x20Sun,\x2014\x20Jul\x202024\x202
+SF:3:33:26\x20GMT\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nConte
+SF:nt-Length:\x20207\r\nConnection:\x20close\r\n\r\n<!doctype\x20html>\n<h
+SF:tml\x20lang=en>\n<title>404\x20Not\x20Found</title>\n<h1>Not\x20Found</
+SF:h1>\n<p>The\x20requested\x20URL\x20was\x20not\x20found\x20on\x20the\x20
+SF:server\.\x20If\x20you\x20entered\x20the\x20URL\x20manually\x20please\x2
+SF:0check\x20your\x20spelling\x20and\x20try\x20again\.</p>\n")%r(HTTPOptio
+SF:ns,184,"HTTP/1\.1\x20404\x20NOT\x20FOUND\r\nServer:\x20Werkzeug/3\.0\.3
+SF:\x20Python/3\.8\.19\r\nDate:\x20Sun,\x2014\x20Jul\x202024\x2023:33:26\x
+SF:20GMT\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length
+SF::\x20207\r\nConnection:\x20close\r\n\r\n<!doctype\x20html>\n<html\x20la
+SF:ng=en>\n<title>404\x20Not\x20Found</title>\n<h1>Not\x20Found</h1>\n<p>T
+SF:he\x20requested\x20URL\x20was\x20not\x20found\x20on\x20the\x20server\.\
+SF:x20If\x20you\x20entered\x20the\x20URL\x20manually\x20please\x20check\x2
+SF:0your\x20spelling\x20and\x20try\x20again\.</p>\n")%r(RTSPRequest,1F4,"<
+SF:!DOCTYPE\x20HTML\x20PUBLIC\x20\"-//W3C//DTD\x20HTML\x204\.01//EN\"\n\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\"http://www\.w3\.org/TR/html4/strict\.dtd
+SF:\">\n<html>\n\x20\x20\x20\x20<head>\n\x20\x20\x20\x20\x20\x20\x20\x20<m
+SF:eta\x20http-equiv=\"Content-Type\"\x20content=\"text/html;charset=utf-8
+SF:\">\n\x20\x20\x20\x20\x20\x20\x20\x20<title>Error\x20response</title>\n
+SF:\x20\x20\x20\x20</head>\n\x20\x20\x20\x20<body>\n\x20\x20\x20\x20\x20\x
+SF:20\x20\x20<h1>Error\x20response</h1>\n\x20\x20\x20\x20\x20\x20\x20\x20<
+SF:p>Error\x20code:\x20400</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Message
+SF::\x20Bad\x20request\x20version\x20\('RTSP/1\.0'\)\.</p>\n\x20\x20\x20\x
+SF:20\x20\x20\x20\x20<p>Error\x20code\x20explanation:\x20HTTPStatus\.BAD_R
+SF:EQUEST\x20-\x20Bad\x20request\x20syntax\x20or\x20unsupported\x20method\
+SF:.</p>\n\x20\x20\x20\x20</body>\n</html>\n")%r(FourOhFourRequest,184,"HT
+SF:TP/1\.1\x20404\x20NOT\x20FOUND\r\nServer:\x20Werkzeug/3\.0\.3\x20Python
+SF:/3\.8\.19\r\nDate:\x20Sun,\x2014\x20Jul\x202024\x2023:33:26\x20GMT\r\nC
+SF:ontent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x20207\r
+SF:\nConnection:\x20close\r\n\r\n<!doctype\x20html>\n<html\x20lang=en>\n<t
+SF:itle>404\x20Not\x20Found</title>\n<h1>Not\x20Found</h1>\n<p>The\x20requ
+SF:ested\x20URL\x20was\x20not\x20found\x20on\x20the\x20server\.\x20If\x20y
+SF:ou\x20entered\x20the\x20URL\x20manually\x20please\x20check\x20your\x20s
+SF:pelling\x20and\x20try\x20again\.</p>\n");
+MAC Address: 02:42:AC:14:00:02 (Unknown)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 92.62 seconds

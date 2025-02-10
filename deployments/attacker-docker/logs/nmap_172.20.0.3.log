@@ -1,0 +1,9 @@
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-15 15:48 UTC
+Nmap scan report for clp1.scadanet (172.20.0.3)
+Host is up (0.000028s latency).
+All 1000 scanned ports on clp1.scadanet (172.20.0.3) are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+MAC Address: 02:42:AC:14:00:03 (Unknown)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1.20 seconds

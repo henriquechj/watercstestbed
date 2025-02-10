@@ -1,0 +1,13 @@
+package com.utfpr.wpumpmqtt;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class WpumpmqttApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(WpumpmqttApplication.class, args);
+	}
+
+}

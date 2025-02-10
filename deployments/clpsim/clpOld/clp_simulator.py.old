@@ -1,0 +1,42 @@
+from pyModbusTCP.server import ModbusServer, DataBank
+from time import sleep
+from random import randint
+
+def run_clp(server_ip, server_port, role):
+    server = ModbusServer(host=server_ip, port=server_port, no_block=True)
+    server.start()
+    print(f"Simulador de {role} iniciado em {server_ip}:{server_port}")
+
+    try:
+        while True:
+            if role == "CLP1":
+                # Simula o nível da barragem de captação
+                server.data_bank.set_holding_registers(0, [randint(0, 100)]) 
+                #DataBank.set_words(0, [randint(0, 100)])
+            elif role == "CLP2":
+                # Simula o nível do tanque de tratamento
+                server.data_bank.set_holding_registers(0, [randint(0, 100)])
+                #DataBank.set_words(0, [randint(0, 100)])
+                # Leitura do comando da bomba de captação
+                bomba_captacao = server.data_bank.get_coils(1)[0]
+                #bomba_captacao = DataBank.get_bits(1)[0]
+                print(f"Bomba de captação: {'Ligada' if bomba_captacao else 'Desligada'}")
+            elif role == "CLP3":
+                # Simula a pressão da rede
+                server.data_bank.set_holding_registers(0, [randint(0, 100)])
+                #DataBank.set_words(0, [randint(0, 100)])
+                # Leitura do comando da bomba de distribuição
+                bomba_distribuicao  = server.data_bank.get_coils(1)[0]
+                #bomba_distribuicao = DataBank.get_bits(1)[0]
+                print(f"Bomba de distribuição: {'Ligada' if bomba_distribuicao else 'Desligada'}")
+            sleep(5)
+    except KeyboardInterrupt:
+        server.stop()
+        print(f"Simulador de {role} parado")
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 4:
+        print("Uso: clp_simulator.py <IP> <PORT> <ROLE>")
+        sys.exit(1)
+    run_clp(sys.argv[1], int(sys.argv[2]), sys.argv[3])

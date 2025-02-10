@@ -1,0 +1,243 @@
+version: "3.9"
+services:
+                  
+  setup:
+    profiles:
+      - setup
+    build:
+      context: elk/setup/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    init: true
+    volumes:
+      - ./elk/setup/entrypoint.sh:/entrypoint.sh:ro,Z
+      - ./elk/setup/lib.sh:/lib.sh:ro,Z
+      - ./elk/setup/roles:/roles:ro,Z
+    environment:
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+      METRICBEAT_INTERNAL_PASSWORD: ${METRICBEAT_INTERNAL_PASSWORD:-}
+      FILEBEAT_INTERNAL_PASSWORD: ${FILEBEAT_INTERNAL_PASSWORD:-}
+      HEARTBEAT_INTERNAL_PASSWORD: ${HEARTBEAT_INTERNAL_PASSWORD:-}
+      MONITORING_INTERNAL_PASSWORD: ${MONITORING_INTERNAL_PASSWORD:-}
+      BEATS_SYSTEM_PASSWORD: ${BEATS_SYSTEM_PASSWORD:-}
+    networks:
+      elk:
+        ipv4_address: 172.21.0.2
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    container_name: elasticsearch
+    build:
+      context: elk/elasticsearch/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./elk/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,Z
+      - elasticsearch:/usr/share/elasticsearch/data:Z
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      node.name: elasticsearch
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      discovery.type: single-node
+    networks:
+      elk:
+        ipv4_address: 172.21.0.3
+    restart: unless-stopped
+
+  logstash:
+    container_name: logstash
+    build:
+      context: elk/logstash/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+      - ./elk/logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+    ports:
+      - 5044:5044
+      - 50000:50000/tcp
+      - 50000:50000/udp
+      - 9600:9600
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx256m
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+    networks:
+      elk:
+        ipv4_address: 172.21.0.4
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+
+  kibana:
+    container_name: kibana
+    build:
+      context: elk/kibana/
+      args:
+        ELASTIC_VERSION: ${ELASTIC_VERSION}
+    volumes:
+      - ./elk/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro,Z
+    ports:
+      - 5601:5601
+    environment:
+      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+    networks:
+      elk:
+        ipv4_address: 172.21.0.5
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: mqtt
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    volumes:
+      - ./mqtt/config:/mosquitto/config:rw
+      - ./mqtt/data:/mosquitto/data:rw
+      - ./mqtt/log:/mosquitto/log:rw
+    networks:
+      cloud:
+        ipv4_address: 172.19.0.10
+    restart: unless-stopped
+
+  mqtt_sensor:
+    container_name: mqtt_sensor
+    build:
+      context: mqtt_sensor/
+    depends_on:
+      - mqtt5
+    networks:
+      cloud:
+        ipv4_address: 172.19.0.11
+
+  mqtt_pump:
+    container_name: mqtt_pump
+    build:
+      context: mqtt_pump/
+    depends_on:
+      - mqtt5
+    ports:
+      - "8083:8080"
+    networks:
+      cloud:
+        ipv4_address: 172.19.0.12
+
+
+  restful:
+    container_name: restful
+    build:
+      context: restful/
+    ports:
+      - 8080:8080
+    networks:
+      cloud:
+        ipv4_address: 172.19.0.2
+
+  restful_client:
+    container_name: restful_client
+    build:
+      context: restful_client/
+    depends_on:
+      - restful
+    networks:
+      cloud:
+        ipv4_address: 172.19.0.3
+      
+
+#  scadasim:
+#    build:
+#      context: scadasim/
+#    container_name: scadasim
+#    ports:
+#      - "8082:8080"
+#    networks:
+#      scadanet:
+#        ipv4_address: 172.20.0.10
+
+  clp1:
+    build:
+      context: clpsim/
+    container_name: clp1
+    networks:
+      scadanet:
+        ipv4_address: 172.20.0.3
+    command: ["172.20.0.3", "502", "CLP1"]
+
+  clp2:
+    build:
+      context: clpsim/
+    container_name: clp2
+    networks:
+      scadanet:
+        ipv4_address: 172.20.0.4
+    command: ["172.20.0.4", "502", "CLP2"]
+
+  clp3:
+    build:
+      context: clpsim/
+    container_name: clp3
+    networks:
+      scadanet:
+        ipv4_address: 172.20.0.5
+    command: ["172.20.0.5", "502", "CLP3"]
+
+  scadapy:
+    build:
+      context: scadapy/
+    container_name: scadapy
+    ports:
+      - "8081:8080"
+    networks:
+      scadanet:
+        ipv4_address: 172.20.0.2
+
+  scadabr:
+    build:
+      context: scadabr/
+    container_name: scadabr
+    ports:
+      - "8082:8080"
+    networks:
+      scadanet:
+        ipv4_address: 172.20.0.10
+
+
+networks:
+  elk:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+    #name: elk
+    #driver_opts:
+    #  com.docker.network.bridge.name: br_elk
+  cloud:
+    driver: bridge
+    name: cloud
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+    driver_opts:
+      com.docker.network.bridge.name: br_cloud
+  scadanet:
+    driver: bridge
+    name: scadanet
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+    driver_opts:
+      com.docker.network.bridge.name: br_scadanet
+
+volumes:
+  elasticsearch:
+  config:
+  data:
+  log:
