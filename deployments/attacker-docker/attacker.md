@@ -10,8 +10,13 @@ Para construir a imagem, execute o seguinte comando no seu terminal, dentro do d
 
 ```bash
 docker build -t attacker .
-´´´
+```
+
 ## 2.  Execução do Container do Atacante
+
+Com a imagem construída, o próximo passo é executar um container a partir dessa imagem. O container é uma instância em execução da imagem Docker.
+
+Utilize o seguinte comando para executar a máquina atacante como um container em segundo plano:
 
 ```bash
 docker run -d \
@@ -21,4 +26,6 @@ docker run -d \
   --cpus="0.75" \
   --pids-limit=200 \
   attacker:latest
-´´´
+```
+
+
