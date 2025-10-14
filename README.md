@@ -16,7 +16,7 @@ A plataforma é dividida em três subprocessos que simulam as etapas de captaç�
 Todos os dados são centralizados em um sistema SCADA (ScadaBR), que oferece uma interface humano-máquina (HMI) para a visualização e controle da operação.
 
 ![Arquitetura da Plataforma de Testes](https://github.com/henriquechj/watercstestbed/raw/main/images/arquitetura.png)
-*(Adaptação da Figura 3 do artigo e Figura 8 da dissertação)*
+
 
 ## Coleta de Dados
 
