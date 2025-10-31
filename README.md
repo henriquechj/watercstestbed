@@ -71,7 +71,7 @@ A plataforma inclui um contêiner baseado em Kali Linux para simular um atacante
 Se você utilizar esta plataforma em sua pesquisa, por favor, cite os seguintes trabalhos:
 
 * **Artigo:**
-    Jorge, C. H., Nacamura Jr, L., & Vendramin, A. C. B. K. (2025). Containerized Testbed Architecture for Cybersecurity Data Collection on Malicious Activities in Industrial Water Systems. *Journal of the Brazilian Computer Society*, 31(1). https://doi.org/10.5753/jbes.2025.5358
+    Jorge, C. H., Nacamura Jr, L., & Vendramin, A. C. B. K. (2025). Containerized Testbed Architecture for Cybersecurity Data Collection on Malicious Activities in Industrial Water Systems. Journal of the Brazilian Computer Society, 31(1), 613–628. https://doi.org/10.5753/jbcs.2025.5358  
 
 * **Dissertação de Mestrado:**
-    Jorge, C. H. (2025). *Arquitetura Conteinerizada para Plataforma de Testes: Coleta de Dados de Atividades Maliciosas em Sistemas Industriais de Água*. Dissertação de Mestrado, Universidade Tecnológica Federal do Paraná. https://riut.utfpr.edu.br/jspui/handle/1/36691
+    JORGE, Carlos Henrique. Arquitetura conteinerizada para plataforma de testes: coleta de dados de atividades maliciosas em sistemas industriais de água. 2025. Dissertação (Mestrado em Computação Aplicada) - Universidade Tecnológica Federal do Paraná, Curitiba, 2025. https://riut.utfpr.edu.br/jspui/handle/1/36691
